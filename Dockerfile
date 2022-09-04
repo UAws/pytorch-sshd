@@ -1,5 +1,5 @@
 ARG UBUNTU_VERSION=20.04
-ARG CUDA_VERSION=11.7
+ARG CUDA_VERSION=11.7.1
 FROM nvidia/cuda:${CUDA_VERSION}-base-ubuntu${UBUNTU_VERSION}
 # An ARG declared before a FROM is outside of a build stage,
 # so it can’t be used in any instruction after a FROM
