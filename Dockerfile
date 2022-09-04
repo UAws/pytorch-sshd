@@ -59,7 +59,7 @@ RUN touch $HOME/.bashrc && \
     conda init bash && source $HOME/.bashrc
 
 # Expose port 8888 for JupyterLab
-EXPOSE 22 8888
+EXPOSE 22 8888g
 
 # Start openssh server
 USER root
