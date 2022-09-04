@@ -56,7 +56,7 @@ RUN curl -o miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-L
 ENV PATH $HOME/conda/bin:$PATH
 RUN touch $HOME/.bashrc && \
     echo "export PATH=$HOME/conda/bin:$PATH" >> $HOME/.bashrc && \
-    conda init bash && source $HOME/.bashrc
+    conda init bash
 
 # Expose port 8888 for JupyterLab
 EXPOSE 22 8888
