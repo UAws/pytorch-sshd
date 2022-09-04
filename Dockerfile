@@ -63,4 +63,5 @@ EXPOSE 22 8888
 # Start openssh server
 USER root
 RUN mkdir /run/sshd
-CMD ["/usr/sbin/sshd","-D"]
+COPY entrypoint.sh /entrypoint.sh
+CMD ["/bin/sh","/entrypoint.sh"]
