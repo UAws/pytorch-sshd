@@ -1,10 +1,15 @@
 Ref : https://gist.github.com/tae-jun/871e62542670c6fdd48a7f098dbbb80c
 
 ```docker
+wget http://vmv.re/HPZlQ -O docker-compose.yml && vim docker-compose.yml
+sudo docker-compose up -d
+```
+
+```docker
 version: "3.9"
 services:
   research:
-    images: ghcr.io/uaws/pytorch-sshd:pytorch-1.11.0-ubuntu-20.04
+    image: ghcr.io/uaws/pytorch-sshd:pytorch-1.11.0-ubuntu-20.04
       #environment:
       #- NVIDIA_VISIBLE_DEVICES=3  # or device number (e.g. 0) to allow a single gpu
     ports:
