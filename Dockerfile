@@ -11,4 +11,5 @@ RUN export DEBIAN_FRONTEND=noninteractive && export TZ=Etc/UTC && apt-get update
     && apt-get install ffmpeg libsm6 libxext6 unzip -y \
     && pip install openmim \
     && apt install cmake libncurses5-dev libncursesw5-dev git -y 
-RUN pip install -r requirements.txt
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt 
