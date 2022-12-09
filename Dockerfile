@@ -1,68 +1,28 @@
-ARG UBUNTU_VERSION=20.04
-ARG CUDA_VERSION=11.7.1
-FROM nvidia/cuda:${CUDA_VERSION}-base-ubuntu${UBUNTU_VERSION}
-# An ARG declared before a FROM is outside of a build stage,
-# so it can’t be used in any instruction after a FROM
-ARG USER=reasearch_monster
-ARG PASSWORD=${USER}123$
-ARG PYTHON_VERSION=3.8
-# To use the default value of an ARG declared before the first FROM,
-# use an ARG instruction without a value inside of a build stage:
-ARG CUDA_VERSION
-
-# Install ubuntu packages
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        build-essential \
-        git \
-        curl \
-        ca-certificates \
-        sudo \
-        locales \
-        openssh-server \
-        vim && \
-    # Remove the effect of `apt-get update`
-    rm -rf /var/lib/apt/lists/* && \
-    # Make the "en_US.UTF-8" locale
-    localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-ENV LANG en_US.utf8
-
-# Setup timezone
-ENV TZ=Asia/Seoul
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-####################################################################################
-# START USER SPECIFIC COMMANDS
-####################################################################################
-
-# Create an user for the app.
-RUN useradd --create-home --shell /bin/bash --groups sudo ${USER}
-RUN echo ${USER}:${PASSWORD} | chpasswd
-USER ${USER}
-ENV HOME /home/${USER}
-WORKDIR $HOME
-
-# Install miniconda (python)
-# Referenced PyTorch's Dockerfile:
-#   https://github.com/pytorch/pytorch/blob/master/docker/pytorch/Dockerfile
-RUN curl -o miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
-    chmod +x miniconda.sh && \
-    ./miniconda.sh -b -p conda && \
-    rm miniconda.sh && \
-    conda/bin/conda install -y python=$PYTHON_VERSION jupyter jupyterlab && \
-    conda/bin/conda install -y pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch && \
-#    conda/bin/conda install -y pytorch torchvision torchaudio cudatoolkit=${CUDA_VERSION} -c pytorch && \
-    conda/bin/conda clean -ya
-ENV PATH $HOME/conda/bin:$PATH
-RUN touch $HOME/.bashrc && \
-    echo "export PATH=$HOME/conda/bin:$PATH" >> $HOME/.bashrc && \
-    conda init bash
-
-# Expose port 8888 for JupyterLab
-EXPOSE 22 8888
-
-# Start openssh server
-USER root
-RUN mkdir /run/sshd
-COPY entrypoint.sh /entrypoint.sh
-CMD ["/bin/sh","/entrypoint.sh"]
+FROM nvcr.io/nvidia/pytorch:22.02-py3
+# https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel_22-02.html#rel_22-02
+# pytroch 1.11 cuda 11.6 ubuntu 20.04
+RUN export DEBIAN_FRONTEND=noninteractive && export TZ=Etc/UTC && apt-get update  \
+    && apt install software-properties-common \
+    && add-apt-repository ppa:flexiondotorg/nvtop \
+    && apt install -y nvtop \
+    && apt-get -y install git wget aria2 byobu \
+    && git config --global http.sslverify "false"  \
+    && apt -y install build-essential \
+    && apt-get install ffmpeg libsm6 libxext6 unzip -y \
+    && pip install openmim \
+    && apt install cmake libncurses5-dev libncursesw5-dev git -y 
+RUN pip install mmcv-full==1.6.0 -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.11.0/index.html \
+   && pip install coolgpus \
+    &&  pip install matplotlib \
+    && pip install prettytable \
+    && pip install wandb \
+    && pip install kornia \
+    && pip install einops \
+    && pip install pytorch_memlab \
+    && git clone https://github.com/open-mmlab/mmrazor.git \
+    && cd mmrazor \
+    && git checkout 8b57a07b5e6033dbd0052aeaf0f72668bdaecd00 \
+    && pip install -v -e . \
+    && mim install mmsegmentation==0.26.0 \
+    && pip install DriveDownloader==1.4.0.post1 \
+    && pip install cityscapesscripts
