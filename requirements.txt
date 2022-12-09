@@ -1,4 +1,4 @@
-mmcv-full==1.6.0 -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.11.0/index.html
+--extra-index-url https://download.openmmlab.com/mmcv/dist/cu113/torch1.11.0/index.html mmcv-full==1.6.0
 argparse~=1.4.0
 numpy~=1.23.4
 mmcls~=0.23.1
