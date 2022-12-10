@@ -5,8 +5,8 @@ numpy~=1.23.4
 mmcls~=0.23.1
 requests~=2.28.1
 pyyaml~=6.0
-opencv-python~=4.6.0.66
-opencv-python-headless~=4.6.0.66
+opencv-python<4.3
+opencv-python-headless<4.3
 matplotlib~=3.5.2
 pillow~=9.2.0
 prettytable~=3.3.0
