@@ -1,6 +1,7 @@
 FROM nvcr.io/nvidia/pytorch:22.02-py3
 # https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel_22-02.html#rel_22-02
 # pytroch 1.11 cuda 11.6 ubuntu 20.04
+RUN nvidia-smi && nvcc --version
 RUN export DEBIAN_FRONTEND=noninteractive && export TZ=Etc/UTC && apt-get update  \
     && apt install software-properties-common -y \
     && add-apt-repository ppa:flexiondotorg/nvtop \
@@ -13,5 +14,5 @@ RUN export DEBIAN_FRONTEND=noninteractive && export TZ=Etc/UTC && apt-get update
     && apt install cmake libncurses5-dev libncursesw5-dev git -y 
 COPY requirements.txt requirements.txt
 # RUN --gpus=all
-RUN nvidia-smi && pip install -U openmim && MMCV_WITH_OPS=1 mim install mmcv-full==1.6.0 \ 
+RUN pip install -U openmim && MMCV_WITH_OPS=1 mim install mmcv-full==1.6.0 \ 
     && pip install -r requirements.txt 
