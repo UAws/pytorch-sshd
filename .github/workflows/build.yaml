@@ -48,7 +48,7 @@ jobs:
       - name: Build and push Docker image 
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-#           image: pytorch-sshd:${{ github.head_ref || github.ref_name }} 
+          image: pytorch-sshd
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
