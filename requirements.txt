@@ -17,12 +17,12 @@ wandb==0.13.2
 kornia==0.6.5
 einops==0.4.1
 pytorch_memlab==0.2.4
-mmsegmentation==0.26.0
+mmsegmentation==0.29.1
 DriveDownloader==1.4.0.post1
 # torch==1.11.0
 # torchvision==0.12.0
 # torchaudio==0.11.0
-timm==0.6.7
+timm==0.6.12
 pytorch-lightning==1.7.2
 pandas~=1.4.3
 clearml~=1.6.4
