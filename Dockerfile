@@ -12,5 +12,5 @@ RUN export DEBIAN_FRONTEND=noninteractive && export TZ=Etc/UTC && apt-get update
     && pip install openmim \
     && apt install cmake libncurses5-dev libncursesw5-dev git -y 
 COPY requirements.txt requirements.txt
-RUN pip install -U openmim && MMCV_WITH_OPS=1 mim install mmcv-full==1.6.0 \ 
+RUN --gpus all pip install -U openmim && MMCV_WITH_OPS=1 mim install mmcv-full==1.6.0 \ 
     && pip install -r requirements.txt 
