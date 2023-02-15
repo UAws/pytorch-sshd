@@ -1,6 +1,6 @@
-FROM nvcr.io/nvidia/pytorch:22.02-py3
+FROM nvcr.io/nvidia/pytorch:21.10-py3
 # https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel_22-02.html#rel_22-02
-# pytroch 1.11 cuda 11.6 ubuntu 20.04
+# pytroch 1.10 cuda 11.4.2 ubuntu 20.04
 RUN export DEBIAN_FRONTEND=noninteractive && export TZ=Etc/UTC && apt-get update  \
     && apt install software-properties-common -y \
     && add-apt-repository ppa:flexiondotorg/nvtop \
@@ -12,6 +12,5 @@ RUN export DEBIAN_FRONTEND=noninteractive && export TZ=Etc/UTC && apt-get update
     && pip install openmim \
     && apt install cmake libncurses5-dev libncursesw5-dev git -y 
 COPY requirements.txt requirements.txt
-RUN conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch \
-    && pip install mmcv-full==1.6.0 -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.11.0/index.html \ 
+RUN pip install mmcv-full==1.4.4 \ 
     && pip install -r requirements.txt 
