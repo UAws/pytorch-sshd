@@ -20,7 +20,7 @@ pytorch_memlab==0.2.4
 mmsegmentation==0.24.0
 DriveDownloader==1.4.0.post1
 # torch==1.11.0
-torchvision==0.11.0
+# torchvision==0.11.0
 # torchaudio==0.11.0
 timm==0.6.7
 pytorch-lightning==1.7.2
