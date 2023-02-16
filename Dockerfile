@@ -1,6 +1,6 @@
-FROM nvcr.io/nvidia/pytorch:21.10-py3
+FROM nvcr.io/nvidia/pytorch:23.01-py3
 # https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel_22-02.html#rel_22-02
-# pytroch 1.10 cuda 11.4.2 ubuntu 20.04
+# pytroch 1.14 cuda 11.8.0 ubuntu 20.04
 RUN export DEBIAN_FRONTEND=noninteractive && export TZ=Etc/UTC && apt-get update  \
     && apt install software-properties-common -y \
     && add-apt-repository ppa:flexiondotorg/nvtop \
