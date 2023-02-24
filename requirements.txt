@@ -17,7 +17,7 @@ wandb==0.13.2
 kornia==0.6.5
 einops==0.4.1
 pytorch_memlab==0.2.4
-mmsegmentation==0.24.0
+mmsegmentation==0.26.0
 DriveDownloader==1.4.0.post1
 # torch==1.11.0
 # torchvision==0.11.0
