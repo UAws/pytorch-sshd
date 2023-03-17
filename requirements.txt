@@ -17,12 +17,9 @@ wandb==0.13.2
 kornia==0.6.5
 einops==0.4.1
 pytorch_memlab==0.2.4
-mmsegmentation==0.26.0
+mmsegmentation==0.30.0
 DriveDownloader==1.4.0.post1
-# torch==1.11.0
-# torchvision==0.11.0
-# torchaudio==0.11.0
-timm==0.6.7
+timm==0.8.15.dev0
 pytorch-lightning==1.7.2
 pandas~=1.4.3
 clearml~=1.6.4
@@ -34,6 +31,5 @@ optuna==3.0.2
 albumentations==1.3.0
 git+https://github.com/open-mmlab/mmrazor.git@8b57a07b5e6033dbd0052aeaf0f72668bdaecd00
 grad-cam
-mmdet==2.26.0
+mmdet==2.28.2
 cityscapesscripts
-# git+https://github.com/ViTAE-Transformer/ViTDet.git@19dd30a496b63b4d18a08ea34a40f167c2d7b8ff
