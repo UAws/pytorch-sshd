@@ -26,7 +26,6 @@ clearml~=1.6.4
 seaborn==0.11.2
 dotmap==1.3.30
 torchshow==0.4.2
-omegaconf==2.2.3
 optuna==3.0.2
 albumentations==1.3.0
 git+https://github.com/open-mmlab/mmrazor.git@8b57a07b5e6033dbd0052aeaf0f72668bdaecd00
