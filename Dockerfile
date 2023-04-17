@@ -5,7 +5,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && export TZ=Etc/UTC && apt-get update
     && apt install software-properties-common ca-certificates -y \
     && add-apt-repository ppa:flexiondotorg/nvtop \
     && apt install -y nvtop \
-    && apt-get -y install git wget aria2 byobu \
+    && apt-get -y install git aria2 byobu \
     && git config --global http.sslverify "false"  \
     && apt -y install build-essential \
     && apt-get install ffmpeg libsm6 libxext6 unzip -y \
