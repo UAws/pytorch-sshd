@@ -37,7 +37,7 @@ ENV TZ=Australia/Adelaide
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY requirements.txt requirements.txt
 RUN export TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.2;7.5;8.0;8.6" && \
-    pip install -v git+https://github.com/facebookresearch/xformers.git@v0.0.19#egg=xformers && \
+    pip install https://github.com/UAws/pytorch-sshd/releases/download/v0.0.1/xformers-0.0.19+8bf59c9.d20230506-cp38-cp38-linux_x86_64.whl && \
     pip install -U openmim && \
     mim install 'mmcv==2.0.0rc4' && \
     pip install -r requirements.txt 
