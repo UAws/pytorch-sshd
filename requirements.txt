@@ -36,4 +36,4 @@ mmengine==0.7.0
 mmselfsup==1.0.0rc6
 omegaconf==2.3.0
 ninja
-git+https://github.com/facebookresearch/xformers.git@v0.0.18#egg=xformers
+# git+https://github.com/facebookresearch/xformers.git@v0.0.18#egg=xformers
