@@ -42,6 +42,14 @@ jobs:
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      
+      - name: Clean up
+        run: |
+          - sudo rm -rf /usr/share/dotnet
+          - sudo rm -rf /opt/ghc
+          - sudo rm -rf "/usr/local/share/boost"
+          - sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          - df -Th
 
       -
         # Setting up Docker Buildx with docker-container driver is required
