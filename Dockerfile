@@ -36,6 +36,7 @@ ENV LANG en_US.utf8
 ENV TZ=Australia/Adelaide
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY requirements.txt requirements.txt
-RUN pip install -U openmim && \
+RUN export TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.2;7.5;8.0;8.6" && \
+    pip install -U openmim && \
     mim install 'mmcv==2.0.0rc4' && \
     pip install -r requirements.txt 
