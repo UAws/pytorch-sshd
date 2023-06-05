@@ -1,6 +1,6 @@
-FROM nvcr.io/nvidia/pytorch:23.03-py3
-# https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel_22-02.html#rel_22-02
-# pytroch 2.0 cuda 12.1.0 ubuntu 20.04
+FROM nvcr.io/nvidia/pytorch:23.05-py3
+# https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel-23-05.html#undefined
+# pytroch 2.0 cuda 12.1.1 ubuntu 22.04
 RUN export DEBIAN_FRONTEND=noninteractive && export TZ=Etc/UTC && apt-get update  \
     && apt install software-properties-common ca-certificates -y \
     && add-apt-repository ppa:flexiondotorg/nvtop \
@@ -36,6 +36,8 @@ ENV LANG en_US.utf8
 ENV TZ=Australia/Adelaide
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY requirements.txt requirements.txt
-RUN pip install -U openmim && \
-    mim install 'mmcv==2.0.0rc4' && \
+RUN export TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.2;7.5;8.0;8.6" && \
+    pip install https://github.com/UAws/pytorch-sshd/releases/download/v0.0.2/xformers-0.0.20+1dc3d7a.d20230605-cp310-cp310-linux_x86_64.whl && \
+    pip install -U openmim && \
+    mim install 'mmcv==2.0.0' && \
     pip install -r requirements.txt 
