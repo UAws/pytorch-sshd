@@ -37,7 +37,10 @@ ENV TZ=Australia/Adelaide
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY requirements.txt requirements.txt
 RUN export TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.2;7.5;8.0;8.6" && \
+    export FORCE_CUDA=1 && \
+    pip install git+https://github.com/rodrigo-castellon/jukemirlib.git && \
+    pip install "git+https://github.com/facebookresearch/pytorch3d.git@stable" && \
     pip install https://github.com/UAws/pytorch-sshd/releases/download/v0.0.2/xformers-0.0.20+1dc3d7a.d20230605-cp310-cp310-linux_x86_64.whl && \
-    pip install -U openmim && \
-    mim install 'mmcv==2.0.0' && \
     pip install -r requirements.txt 
+RUN pip install -U openmim && \
+    mim install 'mmcv==2.0.0'
