@@ -5,6 +5,14 @@ wget http://vmv.re/HPZlQ -O docker-compose.yml && vim docker-compose.yml
 sudo docker-compose up -d
 ```
 
+Check already allocated ports to avoid conflict
+
+```
+netstat -anpt
+```
+
+Using following code to start docker ...
+
 ```docker
 version: "3.9"
 services:
