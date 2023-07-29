@@ -45,9 +45,9 @@ RUN pip install ninja && \
     pip install git+https://github.com/rodrigo-castellon/jukemirlib.git && \
     export CFLAGS="-std=c++17" && \
     pip install "git+https://github.com/AkideLiu/pytorch3d.git@1b99d1a085933a44c075e2629de38899ff5e3178" && \
-    pip install -v -U --pre git+https://github.com/facebookresearch/xformers.git@v0.0.20#egg=xformers && \
-    pip install -r requirements.txt 
+    pip install -r requirements.txt
+RUN pip install -v -U --pre git+https://github.com/facebookresearch/xformers.git@v0.0.20#egg=xformers
 RUN pip install -U openmim && \
-    pip install git+https://github.com/grimoire/mmcv.git@9e0026ebde2834e4fddeaeb4d592bcdd8d79f9c4 # for torch 2.1 require a c++17 compiler
+    pip install git+https://github.com/AkideLiu/mmcv.git@ef99b55faf2500e1c816a7000aca855262196508 # for torch 2.1 require a c++17 compiler
 
 #    pip install https://github.com/UAws/pytorch-sshd/releases/download/v0.0.2/xformers-0.0.20+1dc3d7a.d20230605-cp310-cp310-linux_x86_64.whl && \
