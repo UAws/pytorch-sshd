@@ -37,17 +37,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: free disk space
-        run: |
-          sudo swapoff -a
-          sudo rm -f /swapfile
-          sudo apt clean
-          docker rmi $(docker image ls -aq)
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /opt/ghc
-          sudo rm -rf "/usr/local/share/boost"
-          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-          df -h
+#      - name: free disk space
+#        run: |
+#          sudo swapoff -a
+#          sudo rm -f /swapfile
+#          sudo apt clean
+#          docker rmi $(docker image ls -aq)
+#          sudo rm -rf /usr/share/dotnet
+#          sudo rm -rf /opt/ghc
+#          sudo rm -rf "/usr/local/share/boost"
+#          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+#          df -h
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
