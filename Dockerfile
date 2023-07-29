@@ -1,7 +1,7 @@
 FROM nvcr.io/nvidia/pytorch:23.07-py3
 ENV FORCE_CUDA="1"
 ENV MMCV_WITH_OPS=1
-ENV TORCH_CUDA_ARCH_LIST="7.0;7.2;7.5;8.0;8.6;8.7;8.9"
+ENV TORCH_CUDA_ARCH_LIST="7.0;7.2;7.5;8.0;8.6;8.7"
 # https://stackoverflow.com/questions/68496906/pytorch-installation-for-different-cuda-architectures
 # https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#gpu-feature-list
 # https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel-23-05.html#undefined
