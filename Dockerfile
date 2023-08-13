@@ -16,8 +16,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && export TZ=Etc/UTC && apt-get update
     && apt-get install ffmpeg libsm6 libxext6 unzip -y \
     && pip install openmim \
     && apt install cmake libncurses5-dev libncursesw5-dev git -y
-# install brew due to HPC environment creates read-only root file system
-RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 # Install ubuntu packages
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -43,6 +42,19 @@ ENV LANG en_US.utf8
 # Setup timezone
 ENV TZ=Australia/Adelaide
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# install brew due to HPC environment creates read-only root file system
+# https://stackoverflow.com/a/58293459/14207562
+RUN useradd -m -s /bin/bash linuxbrew && \
+    echo 'linuxbrew ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
+
+USER linuxbrew
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+USER root
+ENV PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
+
+
 COPY requirements.txt requirements.txt
 RUN pip install ninja && \
     pip install git+https://github.com/rodrigo-castellon/jukemirlib.git && \
