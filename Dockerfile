@@ -15,7 +15,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && export TZ=Etc/UTC && apt-get update
     && apt -y install build-essential \
     && apt-get install ffmpeg libsm6 libxext6 unzip -y \
     && pip install openmim \
-    && apt install cmake libncurses5-dev libncursesw5-dev git -y \
+    && apt install cmake libncurses5-dev libncursesw5-dev git -y
 # install brew due to HPC environment creates read-only root file system
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # Install ubuntu packages
