@@ -59,7 +59,6 @@ COPY requirements.txt requirements.txt
 RUN pip install ninja && \
     pip install git+https://github.com/rodrigo-castellon/jukemirlib.git && \
     export CFLAGS="-std=c++17" && \
-    pip install "git+https://github.com/AkideLiu/pytorch3d.git@1b99d1a085933a44c075e2629de38899ff5e3178" && \
     pip install -r requirements.txt
 RUN pip install -v -U --pre git+https://github.com/facebookresearch/xformers.git@v0.0.24#egg=xformers
 RUN pip install -U openmim && \
