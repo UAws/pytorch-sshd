@@ -28,7 +28,9 @@ omegaconf==2.3.0
 # new
 
 
-accelerate==0.21.0
+# accelerate==0.21.0
 p_tqdm==1.4.0
-librosa~=0.9.2
-deepspeed==0.10.0
+# librosa~=0.9.2
+deepspeed==0.13.1
+transformers==4.29.0
+peft==0.7.1
